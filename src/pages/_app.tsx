@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
-import { Navbar } from "../components/Navbar/Navbar";
+import { Navbar } from "@/resources/components/Navbar/Navbar";
 import NextNProgress from "nextjs-progressbar";
-import constants from "../config/constants";
+import constants from "@/config/constants";
 import "@/resources/css/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -1,9 +1,9 @@
 import {useRouter} from "next/router";
 import React, {useState} from "react";
-import Container from "../../components/Container/Container";
-import Skeleton from "../../components/Skeleton/Skeleton";
+import Container from "@/resources/components/Container/Container";
+import Skeleton from "@/resources/components/Skeleton/Skeleton";
 import styles from "@/resources/css/Profile.module.css";
-import randomColor from "../../util/randomColor";
+import randomColor from "@/utils/randomColor";
 
 const [randomColor1, randomColor2, randomColor3, randomColor4] = [
   randomColor(),
