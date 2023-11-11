@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import styles from "@/resources/css/Home.module.css";
 
 /**
  * Landing page with a simple gradient background and a hero asset.
@@ -26,6 +26,7 @@ const Home: NextPage = () => {
           </div>
           <div className={styles.heroAssetFrame}>
             <Image
+                priority={true}
               src="https://placehold.co/600x400/png"
               width={860}
               height={540}

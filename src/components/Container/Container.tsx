@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Container.module.css";
+import styles from "@/resources/css/Container.module.css";
 
 type Props = {
   maxWidth: "xs" | "sm" | "md" | "lg" | "xl";
