@@ -2,14 +2,14 @@ import type { AppProps } from "next/app";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 import { Navbar } from "@/resources/components/Navbar/Navbar";
 import NextNProgress from "nextjs-progressbar";
-import constants from "@/config/constants";
+import config from "@/config/index";
 import "@/resources/css/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThirdwebProvider
-      clientId={process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID}
-      activeChain={constants.NETWORK}
+      clientId={config.constants.thirdweb.clientId}
+      activeChain={config.constants.NETWORK}
     >
       {/* Progress bar when navigating between pages */}
       <NextNProgress
