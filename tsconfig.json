@@ -23,6 +23,12 @@
       "@/config/*": [
         "src/config/*"
       ],
+      "@/database/*": [
+        "src/database/*"
+      ],
+      "@/library/*": [
+        "src/library/*"
+      ],
       "@/resources/*": [
         "src/resources/*"
       ],
