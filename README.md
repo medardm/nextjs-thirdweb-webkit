@@ -29,10 +29,13 @@ a webkit built using thirdwebs starter template
   - `components`
     - contains the layout files and reusable components
   - `stores`
-    - responsible for fetching data from the api and formatting them
+    - responsible for fetching data from the api and formatting them and storing to local storage
 - `pages`: for pages router
 - `utils`
   - generic reusable piece of code that can be used anywhere
+- `tests`
+  - directory for all automated tests
+  - jest
 
 
 ## Naming Convention
