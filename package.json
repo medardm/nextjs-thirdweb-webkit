@@ -13,13 +13,17 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "deploy": "next build && next export && npx thirdweb@latest upload out"
+    "deploy": "next build && next export && npx thirdweb@latest upload out",
+
+    "make:template": "hygen generator new:template",
+    "make:model": "hygen generator new:model"
   },
   "dependencies": {
     "@thirdweb-dev/chains": "^0",
     "@thirdweb-dev/react": "^4",
     "@thirdweb-dev/sdk": "^4",
     "ethers": "^5",
+    "hygen": "^6.2.11",
     "next": "^13",
     "nextjs-progressbar": "^0.0.16",
     "react": "^18.2",
