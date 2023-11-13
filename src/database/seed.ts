@@ -1,35 +1,34 @@
 import {PrismaClient} from '@prisma/client'
 import { parseArgs } from 'node:util'
 import {ParseArgsConfig} from "util";
+import seedTestData from "./seeders/test/index.seeder";
+import seedProdData from "./seeders/prod/index.seeder";
+import seedPreRequisiteData from "./seeders/index.seeder";
 
 const prisma = new PrismaClient()
 
 const options = {
-  env: { type: 'string' },
+  category: { type: 'string' },
 }
 
-async function seedDevData() {
-}
-
-async function seedProdData() {
-}
-
-
+/**
+ *  pass [-- --category test] in command line to specify category
+ */
 async function main() {
   const {
-    values: { environment },
+    values: { category },
   } = parseArgs({ options } as ParseArgsConfig)
 
-  switch (environment) {
-    case 'dev':
-      /** data for your development */
-      await seedDevData();
-      break
+  // seed prerequisite data
+  await seedPreRequisiteData()
+  switch (category) {
     case 'prod':
-      /** data for your test environment */
+      /** data for your prod environment */
       await seedProdData();
       break
     default:
+      /** seed */
+      await seedTestData();
       break
   }
 }

@@ -24,6 +24,7 @@
     "####---TEMPLATE SCRIPTS---#####": "----",
     "make:template": "hygen generator new",
     "make:model": "hygen model new",
+    "make:seeder": "hygen seeder new",
     "make:factory": "hygen factory new",
     "####---DATABASE/PRISMA SCRIPTS---#####": "----",
     "migrate:dev": "npx prisma migrate dev && dotenv -e .env.test -- prisma migrate dev",
