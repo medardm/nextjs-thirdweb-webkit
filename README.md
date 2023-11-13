@@ -9,7 +9,9 @@ a webkit built using thirdwebs starter template
 yarn
 yarn setup
 ```
-### Scripts 
+
+## Hot to use
+### Useful Scripts 
 - there are useful scripts in `package.json` that can aid in development
 - run `yarn scripts` to show available scripts
 #### List of scripts that can help in development
@@ -39,7 +41,7 @@ yarn setup
   - application configs that includes the constants
 - `database`
   - `factories`
-    - code for generating test models
+    - code for generating test models ideally with fakerjs
   - `seeders`
     - code for seeding database with test or production data
       - `prod`
@@ -52,7 +54,7 @@ yarn setup
   - `controllers`
     - for interacting with services and returning data requested by the app
   - `models`
-    - database queries
+    - for database queries
 - `resources`
   - `css`
     - contains all the stylesheets
@@ -68,13 +70,23 @@ yarn setup
   - `jest`
   - `cypress`
 
-## Naming Convention
+## Coding guide
 
-### Files
+### Naming Convention
+
+#### General
+
 - [x] Components should be in `PascalCase`
 - [x] Route and directory names should be in `kebab-case`
 - [x] Other files should be in `camelCase`
 
-## Coding guide
+#### Specifics
 
-### 
+- [x] **Models**: `[name].model.ts` (e.g. `user.model.ts`)
+- [x] **Controllers**: `[name].controller.ts` (e.g. `auth.controller.ts`)
+- [x] **Tests**: `[name].test.ts` or `[name.category].test.ts` if applicable (e.g. `auth.test.ts`)
+- [x] **Seeders**: `[name].seeder.ts` (e.g. `user.seeder.ts`)
+- [x] **Factory**: `[name].factory.ts` (e.g. `user.factory.ts`)
+
+
+[back to top](#nextjs-thirdweb-webkit)
