@@ -23,6 +23,7 @@
     "test": "jest --watch ./src/tests/jest",
     "####---TEMPLATE SCRIPTS---#####": "----",
     "make:template": "hygen generator new",
+    "make:test": "hygen test new",
     "make:model": "hygen model new",
     "make:seeder": "hygen seeder new",
     "make:factory": "hygen factory new",

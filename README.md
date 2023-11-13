@@ -15,16 +15,22 @@ yarn setup
 #### List of scripts that can help in development
 - `yarn setup`
   - run migrations and seed prerequisite and test data
-- `yarn make:model [name]`
-  - generate a model from a template
-- `yarn make:factory [name]`
-  - generate a factory from a template
-- `yarn migrate:dev`
-  - run database migrations and seed (updating database with changes in schema)
-- `yarn migrate:reset`
-  - reset database schema and seed
-- `yarn db:seed`
-  - run/rerun seeders
+- #### Templates
+  - `yarn make:model [name]`
+    - generate a model file from a template
+  - `yarn make:factory [name]`
+    - generate a factory file from a template
+  - `yarn make:seeder [name]`
+    - generate a database seeder from a template
+  - `yarn make:test [name]`
+    - generate a test file from a template
+- #### Database and Prisma
+  - `yarn migrate:dev`
+    - run database migrations and seed (updating database with changes in schema)
+  - `yarn migrate:reset`
+    - reset database schema and seed
+  - `yarn db:seed`
+    - run/rerun seeders
 
 ## Directory Structure
 - `src`

@@ -2,12 +2,23 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/resources/css/Home.module.css";
+import userModel from "@/library/models/user.model";
+import userFactory from "@/database/factory/user.factory";
+
+export async function getServerSideProps() {
+  const userFac = await userFactory.create(5)
+  const user = await userModel
+    .find('0x445E5C0c19b79DA560DB4E253587C93213B0D415', 'walletAddress')
+
+  return {props: {user: JSON.parse(JSON.stringify(user)), userFac: JSON.parse(JSON.stringify(userFac))}}
+}
 
 /**
  * Landing page with a simple gradient background and a hero asset.
  * Free to customize as you see fit.
  */
-const Home: NextPage = () => {
+const Home: NextPage = (props) => {
+  console.log(props)
   return (
     <div className={styles.container}>
       <div className={styles.content}>
