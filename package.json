@@ -12,6 +12,8 @@
     "npm": "please-use-yarn"
   },
   "scripts": {
+    "scripts": "npm run",
+    "setup": "sh init.sh",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -21,7 +23,7 @@
     "deploy": "next build && next export && npx thirdweb@latest upload out",
     "make:template": "hygen generator new",
     "make:model": "hygen generator model",
-    "migrate:dev": "npx prisma migrate dev",
+    "migrate:dev": "npx prisma migrate dev && dotenv -e .env.test -- prisma migrate dev",
     "migrate:reset": "npx prisma migrate reset",
     "db:seed": "npx prisma db seed",
     "prisma:studio": "npx prisma studio",
@@ -35,6 +37,7 @@
     "@thirdweb-dev/react": "^4",
     "@thirdweb-dev/sdk": "^4",
     "dotenv": "^16.3.1",
+    "dotenv-cli": "^7.3.0",
     "ethers": "^5",
     "hygen": "^6.2.11",
     "next": "^13",
