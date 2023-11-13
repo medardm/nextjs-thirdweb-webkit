@@ -35,7 +35,8 @@ a webkit built using thirdwebs starter template
   - generic reusable piece of code that can be used anywhere
 - `tests`
   - directory for all automated tests
-  - jest
+  - `jest`
+  - `cypress`
 
 
 ## Naming Convention
