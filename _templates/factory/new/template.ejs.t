@@ -7,11 +7,11 @@ import {<%= h.capitalize(name) %>} from "@prisma/client";
 
 const <%= name %>Factory = {
   definition: {
-    testColumn: faker.string.hexadecimal({length: 40}),
+    <%= name %>Column: faker.string.hexadecimal({length: 40}),
   },
   reloadDefinition: () => {
     <%= name %>Factory.setDefinition(<<%= h.capitalize(name) %>> {
-      testColumn: faker.string.hexadecimal({length: 10})
+      <%= name %>Column: faker.string.hexadecimal({length: 10})
     })
   },
   setDefinition: (definition:any) => {

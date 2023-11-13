@@ -2,6 +2,30 @@
 
 a webkit built using thirdwebs starter template
 
+## Introduction
+### Setting up webkit
+- install dependencies and run setup script
+```shell
+yarn
+yarn setup
+```
+### Scripts 
+- there are useful scripts in `package.json` that can aid in development
+- run `yarn scripts` to show available scripts
+#### List of scripts that can help in development
+- `yarn setup`
+  - run migrations and seed prerequisite and test data
+- `yarn make:model [name]`
+  - generate a model from a template
+- `yarn make:factory [name]`
+  - generate a factory from a template
+- `yarn migrate:dev`
+  - run database migrations and seed (updating database with changes in schema)
+- `yarn migrate:reset`
+  - reset database schema and seed
+- `yarn db:seed`
+  - run/rerun seeders
+
 ## Directory Structure
 - `src`
   - all the application related code. 
@@ -38,10 +62,13 @@ a webkit built using thirdwebs starter template
   - `jest`
   - `cypress`
 
-
 ## Naming Convention
 
 ### Files
 - [x] Components should be in `PascalCase`
 - [x] Route and directory names should be in `kebab-case`
 - [x] Other files should be in `camelCase`
+
+## Coding guide
+
+### 
