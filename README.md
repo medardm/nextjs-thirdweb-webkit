@@ -18,15 +18,16 @@ yarn setup
 - `yarn setup`
   - run migrations and seed prerequisite and test data
 - #### Templates
-  - `yarn make:model [name]`
-    - generate a model file from a template
-  - `yarn make:factory [name]`
-    - generate a factory file from a template
-  - `yarn make:seeder [name]`
-    - generate a database seeder from a template
-  - `yarn make:test [name]`
-    - generate a test file from a template
+  - Certain libraries like models can be generated through the `make` command.
+  - `yarn make:help`
+    - shows available template commands and description
+  - For example: `yarn make:model user`
+      - create a **user** `model`, `seeder`, `factory` and inserts a new table/model in `schema.prisma`
+
 - #### Database and Prisma
+  - `yarn prisma:generate`
+    - update prisma client with the latest changes in the schema
+    - **please run this after updating the schema** to avoid type errors when using models
   - `yarn migrate:dev`
     - run database migrations and seed (updating database with changes in schema)
   - `yarn migrate:reset`
