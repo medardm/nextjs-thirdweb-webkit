@@ -13,6 +13,8 @@ const userFactory = {
     userFactory.setDefinition(<User> {
       walletAddress: faker.string.hexadecimal({length: 40})
     })
+
+    return userFactory
   },
   /**
    * Custom definitions
