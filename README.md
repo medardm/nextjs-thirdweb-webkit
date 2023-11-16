@@ -10,7 +10,7 @@ yarn
 yarn setup
 ```
 
-## Hot to use
+## How to use
 ### Useful Scripts 
 - there are useful scripts in `package.json` that can aid in development
 - run `yarn scripts` to show available scripts

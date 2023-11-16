@@ -7,7 +7,7 @@
     "seed": "ts-node src/database/seed.ts"
   },
   "engines": {
-    "node": ">=16.15.1",
+    "node": ">=18",
     "yarn": ">=1.22.19",
     "npm": "please-use-yarn"
   },
@@ -49,6 +49,8 @@
     "dotenv": "^16.3.1",
     "dotenv-cli": "^7.3.0",
     "ethers": "^5",
+    "formidable": "^3.5.1",
+    "http-status-codes": "^2.3.0",
     "hygen": "^6.2.11",
     "next": "^13",
     "nextjs-progressbar": "^0.0.16",
@@ -64,6 +66,7 @@
     "@testing-library/jest-dom": "6.1.4",
     "@testing-library/react": "14.1.0",
     "@testing-library/user-event": "14.5.1",
+    "@types/formidable": "^3.4.5",
     "@types/node": "^18.11.11",
     "@types/react": "^18",
     "@types/react-dom": "^18",
