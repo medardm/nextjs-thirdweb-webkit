@@ -13,6 +13,8 @@ const <%= name %>Factory = {
     <%= name %>Factory.setDefinition(<<%= h.capitalize(name) %>> {
       <%= name %>Column: faker.string.hexadecimal({length: 10})
     })
+
+    return <%= name %>Factory
   },
   setDefinition: (definition:any) => {
     <%= name %>Factory.definition = {
