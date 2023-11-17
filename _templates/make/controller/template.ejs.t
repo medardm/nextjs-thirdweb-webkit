@@ -7,7 +7,7 @@ import <%= name %>Model from "@/library/models/<%= name %>.model";
 import {getHttpStatus, parseFormData} from "@/library/http";
 
 const <%= name %>Controller = {
-  index: (req: NextApiRequest, res: NextApiResponse) => {
+  get: (req: NextApiRequest, res: NextApiResponse) => {
   },
   read: () => {
   },

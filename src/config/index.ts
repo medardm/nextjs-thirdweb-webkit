@@ -1,7 +1,20 @@
-import { Binance } from "@thirdweb-dev/chains";
+import {Binance} from "@thirdweb-dev/chains";
 
 const app = {
   environment: process.env.APP_ENV ?? process.env.NODE_ENV
+}
+
+/**
+ * global API configs
+ */
+const api = {
+  routes: {
+    config: {
+      api: {
+        bodyParser: false,
+      },
+    }
+  }
 }
 
 const constants = {
@@ -13,6 +26,7 @@ const constants = {
 
 const config = {
   app,
+  api,
   constants
 }
 

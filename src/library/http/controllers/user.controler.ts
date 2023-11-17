@@ -4,7 +4,7 @@ import userModel from "@/library/models/user.model";
 import {getHttpStatus, parseFormData} from "@/library/http";
 
 const userController = {
-  index: () => {
+  get: () => {
   },
   read: () => {
   },
