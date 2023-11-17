@@ -2,8 +2,26 @@ import {NextApiRequest, NextApiResponse} from "next";
 import {StatusCodes} from "http-status-codes";
 import formidable from "formidable";
 
-export const executeRouteAction = async (actions: any, req: NextApiRequest, res: NextApiResponse) => {
-  if (!req.method || !actions[req.method]) {
+export enum HTTP_METHODS {
+  GET = 'GET',
+  POST = 'POST',
+  PATCH = 'PATCH',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+}
+
+export type RouteActions = {
+  [HTTP_METHODS.GET]: any
+  [HTTP_METHODS.POST]: any
+  [HTTP_METHODS.PUT]: any
+  [HTTP_METHODS.PATCH]: any
+  [HTTP_METHODS.DELETE]: any
+}
+
+export const executeRouteAction = async (actions: RouteActions, req: NextApiRequest, res: NextApiResponse) => {
+  const method = req.method as HTTP_METHODS
+
+  if (!method || !actions[method as HTTP_METHODS]) {
     const responseStatus = getHttpStatus('METHOD_NOT_ALLOWED')
     return res
       .status(responseStatus.code)
@@ -12,7 +30,7 @@ export const executeRouteAction = async (actions: any, req: NextApiRequest, res:
 
   let response
   try {
-    response = await actions[req.method](req, res)
+    response = await actions[method](req, res)
   } catch (e: any) {
     response = res
       .status(getHttpStatus('INTERNAL_SERVER_ERROR').code)
