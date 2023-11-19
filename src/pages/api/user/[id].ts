@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
    * Add your routes here
    */
   const actions: any = {
-    'POST': userControler.store
+    'GET': userControler.find
   };
 
   return await executeRouteAction(actions, req, res)
