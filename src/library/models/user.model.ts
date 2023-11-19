@@ -25,7 +25,7 @@ const userModel = {
       },
     })
   },
-  create: async (newUser: UserCreateInput): Promise<User | null> => {
+  create: async (newUser: UserCreateInput): Promise<User | never> => {
     return prisma.user.create({
       data: {
         walletAddress: newUser.walletAddress,

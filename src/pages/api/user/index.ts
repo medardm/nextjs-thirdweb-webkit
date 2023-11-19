@@ -1,5 +1,5 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import userControler from "@/library/http/controllers/user.controler";
+import userController from "@/library/http/controllers/user.controller";
 import {executeRouteAction, HTTP_METHODS, RouteActions} from "@/library/http";
 import conf from "@/config/index";
 
@@ -9,8 +9,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
    * Add your routes here
    */
   return await executeRouteAction(<RouteActions> {
-    [GET]: userControler.all,
-    [POST]: userControler.store
+    [GET]: userController.all,
+    [POST]: userController.store
   }, req, res)
 }
 

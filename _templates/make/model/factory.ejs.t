@@ -3,20 +3,20 @@ to: src/database/factory/<%= name %>.factory.ts
 ---
 import {faker} from "@faker-js/faker";
 import <%= name %>Model from "@/library/models/<%= name %>.model";
-import {<%= h.capitalize(name) %>} from "@prisma/client";
+import {Prisma, <%= h.capitalize(name) %>} from "@prisma/client";
 
 const <%= name %>Factory = {
   definition: {
     <%= name %>Column: faker.string.hexadecimal({length: 40}),
   },
   reloadDefinition: () => {
-    <%= name %>Factory.setDefinition(<<%= h.capitalize(name) %>> {
+    <%= name %>Factory.setDefinition({
       <%= name %>Column: faker.string.hexadecimal({length: 10})
     })
 
     return <%= name %>Factory
   },
-  setDefinition: (definition:any) => {
+  setDefinition: (definition:Prisma.<%= h.capitalize(name) %>CreateInput) => {
     <%= name %>Factory.definition = {
       ...definition
     }
@@ -27,7 +27,7 @@ const <%= name %>Factory = {
     let records: <%= h.capitalize(name) %>[] = [];
     for (let i = 0; i < quantity; i++) {
       <%= name %>Factory.reloadDefinition()
-      records.push(<<%= h.capitalize(name) %>> await <%= name %>Model.create(<%= name %>Factory.definition as <%= h.capitalize(name) %>))
+      records.push(await <%= name %>Model.create(<%= name %>Factory.definition as <%= h.capitalize(name) %>))
     }
     return records
   }

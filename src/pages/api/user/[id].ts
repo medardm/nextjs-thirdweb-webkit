@@ -1,5 +1,5 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import userControler from "@/library/http/controllers/user.controler";
+import userController from "@/library/http/controllers/user.controller";
 import {executeRouteAction} from "@/library/http";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
    * Add your routes here
    */
   const actions: any = {
-    'GET': userControler.find
+    'GET': userController.find
   };
 
   return await executeRouteAction(actions, req, res)

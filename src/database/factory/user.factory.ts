@@ -1,6 +1,6 @@
 import {faker} from "@faker-js/faker";
 import userModel from "@/library/models/user.model";
-import {User} from "@prisma/client";
+import {Prisma, User} from "@prisma/client";
 
 const userFactory = {
   /**
@@ -10,7 +10,7 @@ const userFactory = {
     walletAddress: faker.string.hexadecimal({length: 40}),
   },
   reloadDefinition: () => {
-    userFactory.setDefinition(<User> {
+    userFactory.setDefinition({
       walletAddress: faker.string.hexadecimal({length: 40})
     })
 
@@ -19,7 +19,7 @@ const userFactory = {
   /**
    * Custom definitions
    */
-  setDefinition: (definition: User) => {
+  setDefinition: (definition: Prisma.UserCreateInput) => {
     userFactory.definition = {
       ...definition
     }
@@ -33,7 +33,7 @@ const userFactory = {
     let records: User[] = [];
     for (let i = 0; i < quantity; i++) {
       userFactory.reloadDefinition()
-      records.push(<User> await userModel.create(userFactory.definition as User))
+      records.push(await userModel.create(userFactory.definition))
     }
     return records
   }
