@@ -87,6 +87,9 @@ yarn setup
 
 ### Controllers
 ### Models
+### Utilities
+### Factories
+### Seeders
 
 
 [back to top](#nextjs-thirdweb-webkit)
