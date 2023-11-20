@@ -3,8 +3,12 @@ import {Prisma, User} from "@prisma/client";
 
 const userModel = {
   ...prisma.user,
-  find: async (options: Prisma.UserFindFirstArgs): Promise<User | null> => {
-    return prisma.user.findFirst(options)
+  first: async (value: any, column: keyof User = 'id'): Promise<User | null> => {
+    return prisma.user.findFirst({
+      where: {
+        [column]: value
+      }
+    })
   },
   all: (options?: Prisma.UserFindManyArgs): Promise<User[] | null> => {
     return prisma.user.findMany(options)

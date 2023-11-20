@@ -6,8 +6,12 @@ import {Prisma, <%= h.capitalize(name) %>} from "@prisma/client";
 
 const <%= name %>Model = {
   ...prisma.<%= name %>,
-  find: async (options: Prisma.<%= h.capitalize(name) %>FindFirstArgs): Promise<<%= h.capitalize(name) %> | null> => {
-    return prisma.<%= name %>.findFirst(options)
+  first: async (value: any, column: keyof <%= h.capitalize(name) %> = 'id'): Promise<<%= h.capitalize(name) %> | null> => {
+    return prisma.<%= name %>.findFirst({
+      where: {
+        [column]: value
+      }
+    })
   },
   all: (options?: Prisma.<%= h.capitalize(name) %>FindManyArgs): Promise<<%= h.capitalize(name) %>[] | null> => {
     return prisma.<%= name %>.findMany(options)
