@@ -6,8 +6,8 @@ const userFactory = {
   /**
    * Initialize model attributes
    */
-  definition: {
-    walletAddress: faker.string.hexadecimal({length: 40}),
+  definition: <Prisma.UserCreateArgs> {
+    data: {walletAddress: faker.string.hexadecimal({length: 40})}
   },
   reloadDefinition: () => {
     userFactory.setDefinition({
@@ -21,7 +21,7 @@ const userFactory = {
    */
   setDefinition: (definition: Prisma.UserCreateInput) => {
     userFactory.definition = {
-      ...definition
+      data: {...definition}
     }
 
     return userFactory

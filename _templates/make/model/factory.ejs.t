@@ -6,8 +6,8 @@ import <%= name %>Model from "@/library/models/<%= name %>.model";
 import {Prisma, <%= h.capitalize(name) %>} from "@prisma/client";
 
 const <%= name %>Factory = {
-  definition: {
-    <%= name %>Column: faker.string.hexadecimal({length: 40}),
+  definition: <Prisma.<%= h.capitalize(name) %>CreateArgs> {
+    data: {<%= name %>Column: faker.string.hexadecimal({length: 40})}
   },
   reloadDefinition: () => {
     <%= name %>Factory.setDefinition({
@@ -18,7 +18,7 @@ const <%= name %>Factory = {
   },
   setDefinition: (definition:Prisma.<%= h.capitalize(name) %>CreateInput) => {
     <%= name %>Factory.definition = {
-      ...definition
+      data: {...definition}
     }
 
     return <%= name %>Factory
@@ -27,7 +27,7 @@ const <%= name %>Factory = {
     let records: <%= h.capitalize(name) %>[] = [];
     for (let i = 0; i < quantity; i++) {
       <%= name %>Factory.reloadDefinition()
-      records.push(await <%= name %>Model.create(<%= name %>Factory.definition as <%= h.capitalize(name) %>))
+      records.push(await <%= name %>Model.create(<%= name %>Factory.definition))
     }
     return records
   }
