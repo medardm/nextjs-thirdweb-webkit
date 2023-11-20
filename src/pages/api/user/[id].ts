@@ -1,6 +1,7 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import userController from "@/library/http/controllers/user.controller";
 import {executeRouteAction} from "@/library/http";
+import conf from "@/config/index";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   /**
@@ -13,8 +14,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   return await executeRouteAction(actions, req, res)
 }
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+// force use formidable as parser
+export const config = conf.api.routes.config;

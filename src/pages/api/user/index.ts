@@ -14,5 +14,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }, req, res)
 }
 
-// force use formidable as
+// force use formidable as parser
 export const config = conf.api.routes.config;

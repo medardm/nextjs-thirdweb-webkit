@@ -25,7 +25,7 @@ export const executeRouteAction = async (actions: RouteActions, req: NextApiRequ
     const responseStatus = getHttpStatus('METHOD_NOT_ALLOWED')
     return res
       .status(responseStatus.code)
-      .json({message: responseStatus.phrase, success: false})
+      .json({error: responseStatus.phrase, success: false})
   }
 
   let response
