@@ -85,11 +85,8 @@ yarn setup
 - [x] **Seeders**: `[name].seeder.ts` (e.g. `user.seeder.ts`)
 - [x] **Factory**: `[name].factory.ts` (e.g. `user.factory.ts`)
 
-### Controllers
-### Models
-### Utilities
-### Factories
-### Seeders
+### Validation
+- Please use request objects for validations (create validator objects in  `src/library/http/requests`). It makes use of the [zod](https://www.npmjs.com/package/zod) package for the rules
 
 
 [back to top](#nextjs-thirdweb-webkit)
