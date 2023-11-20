@@ -41,7 +41,7 @@ const userRequest = {
       case 'store':
         return rules.store.parseAsync(data)
       default:
-        throw Error('Invalid action')
+        throw new Error('Invalid Action')
     }
   }
 }

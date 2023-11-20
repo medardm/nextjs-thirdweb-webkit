@@ -1,6 +1,9 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import {StatusCodes} from "http-status-codes";
 import formidable from "formidable";
+import {ZodError} from "zod";
+import {fromZodError} from "zod-validation-error";
+import {serializeError} from "eth-rpc-errors";
 
 export enum HTTP_METHODS {
   GET = 'GET',
@@ -28,16 +31,20 @@ export const executeRouteAction = async (actions: RouteActions, req: NextApiRequ
       .json({error: responseStatus.phrase, success: false})
   }
 
-  let response
   try {
-    response = await actions[method](req, res)
+    return await actions[method](req, res)
   } catch (e: any) {
-    response = res
-      .status(getHttpStatus('INTERNAL_SERVER_ERROR').code)
+    let status = getHttpStatus('INTERNAL_SERVER_ERROR')
+    if (e instanceof ZodError) {
+      status = getHttpStatus('BAD_REQUEST')
+      e = {message: fromZodError(e).toString()}
+    } else {
+      e = serializeError(e)
+    }
+    return res
+      .status(status.code)
       .json({error: e, success: false})
   }
-
-  return response
 }
 
 export const parseFormData = async (req: NextApiRequest): Promise<{ primary: any, files: any }> => {
