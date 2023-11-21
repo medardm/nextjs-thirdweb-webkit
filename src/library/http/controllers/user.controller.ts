@@ -1,15 +1,14 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import userModel from "@/library/models/user.model";
 import {getHttpStatus, parseFormData} from "@/library/http";
-import _ from "lodash"
 import userRequest from "@/library/http/requests/user.request";
 
 const userController = {
   find: async (req: NextApiRequest, res: NextApiResponse) => {
-    const validatedData = await userRequest.validate({'id': _.toNumber(req.query.id)}, 'find')
+    const queryData = await userRequest.validate({'id': req.query.id}, 'find')
 
     const data = await userModel.findFirst({
-      where: validatedData
+      where: queryData
     })
 
     return res.status(getHttpStatus("OK").code).json({data: data, success: true})

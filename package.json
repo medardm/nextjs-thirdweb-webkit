@@ -25,6 +25,7 @@
     "make:template": "hygen generator new",
     "make:help": "hygen make help",
     "make:controller": "hygen make controller",
+    "make:request": "hygen make request",
     "make:model": "hygen make model",
     "make:model:only": "hygen make model:only",
     "make:model:table": "hygen make model:table",
