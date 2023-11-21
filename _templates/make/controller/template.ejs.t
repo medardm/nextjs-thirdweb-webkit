@@ -8,7 +8,6 @@ import {<%= h.capitalize(name) %>} from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 import <%= name %>Model from "@/library/models/<%= name %>.model";
 import {getHttpStatus, parseFormData} from "@/library/http";
-
 <% if(locals.o){ -%>
 import _ from "lodash"
 <% } -%>
