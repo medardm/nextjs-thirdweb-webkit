@@ -1,4 +1,4 @@
-import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
+import {ConnectWallet, useAddress} from "@thirdweb-dev/react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/resources/css/Navbar.module.css";
@@ -32,7 +32,13 @@ export function Navbar() {
 
         <div className={styles.navRight}>
           <div className={styles.navConnect}>
-            <ConnectWallet theme="dark" btnTitle="Connect Wallet" />
+            <ConnectWallet
+              auth={{
+                loginOptional: false
+              }}
+
+              theme="dark"
+              btnTitle="Connect Wallet" />
           </div>
           {address && (
             <Link className={styles.link} href={`/profile/${address}`}>
