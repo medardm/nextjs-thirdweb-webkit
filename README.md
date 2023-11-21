@@ -51,6 +51,8 @@ yarn setup
   - `http`
     - `controllers`
       - for interacting with services and returning data requested by the app
+    - `requests`
+      - form data or query validations, all data validators per controller exists here
   - `models`
     - for database queries
 - `resources`
@@ -70,6 +72,8 @@ yarn setup
 
 ## Coding Guide
 
+### ** Please use a generator (if available) when creating the libraries
+
 ### Naming Convention
 #### General
 
@@ -81,9 +85,12 @@ yarn setup
 
 - [x] **Models**: `[name].model.ts` (e.g. `user.model.ts`)
 - [x] **Controllers**: `[name].controller.ts` (e.g. `auth.controller.ts`)
+- [x] **Requests**: `[name].request.ts` (e.g. `auth.request.ts`)
 - [x] **Tests**: `[name].test.ts` or `[name.category].test.ts` if applicable (e.g. `auth.test.ts`)
 - [x] **Seeders**: `[name].seeder.ts` (e.g. `user.seeder.ts`)
 - [x] **Factory**: `[name].factory.ts` (e.g. `user.factory.ts`)
+
+
 
 ### Validation
 - Please use request objects for validations (create validator objects in  `src/library/http/requests`). It makes use of the [zod](https://www.npmjs.com/package/zod) package for the rules
