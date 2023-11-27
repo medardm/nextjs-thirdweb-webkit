@@ -35,6 +35,9 @@
       "@/resources/*": [
         "src/resources/*"
       ],
+      "@/pages/*": [
+        "src/pages/*"
+      ],
       "@/utils/*": [
         "src/utils/*"
       ]

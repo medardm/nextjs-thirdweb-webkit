@@ -15,6 +15,7 @@
     "scripts": "npm run",
     "setup": "sh init.sh",
     "dev": "next dev",
+    "dev:test": "npx dotenv -e .env.test next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

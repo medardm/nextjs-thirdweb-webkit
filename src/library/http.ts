@@ -4,6 +4,9 @@ import formidable from "formidable";
 import {ZodError} from "zod";
 import {fromZodError} from "zod-validation-error";
 import {serializeError} from "eth-rpc-errors";
+import {checkGuards, RouteGuards} from "@/library/helpers/guard.helper";
+import {getAuthUser} from "@/library/helpers/auth.helper";
+import {RouteError} from "@/library/errors/RouteError";
 
 export enum HTTP_METHODS {
   GET = 'GET',
@@ -14,36 +17,51 @@ export enum HTTP_METHODS {
 }
 
 export type RouteActions = {
-  [HTTP_METHODS.GET]: any
-  [HTTP_METHODS.POST]: any
-  [HTTP_METHODS.PUT]: any
-  [HTTP_METHODS.PATCH]: any
-  [HTTP_METHODS.DELETE]: any
+  [HTTP_METHODS.GET]?: any
+  [HTTP_METHODS.POST]?: any
+  [HTTP_METHODS.PUT]?: any
+  [HTTP_METHODS.PATCH]?: any
+  [HTTP_METHODS.DELETE]?: any
 }
 
-export const executeRouteAction = async (actions: RouteActions, req: NextApiRequest, res: NextApiResponse) => {
-  const method = req.method as HTTP_METHODS
-
+const checkRouteAction = (method: HTTP_METHODS, actions: RouteActions) => {
   if (!method || !actions[method as HTTP_METHODS]) {
-    const responseStatus = getHttpStatus('METHOD_NOT_ALLOWED')
-    return res
-      .status(responseStatus.code)
-      .json({error: responseStatus.phrase, success: false})
+    throw new RouteError('Action not allowed')
   }
+}
+
+export const executeRouteAction = async (
+  actions: RouteActions,
+  req: NextApiRequest,
+  res: NextApiResponse,
+  guards?: RouteGuards
+) => {
+  const method = <HTTP_METHODS>req.method
 
   try {
+    /**
+     * Execute guards if there's any
+     */
+    await checkGuards(await getAuthUser(req), guards, method)
+    checkRouteAction(method, actions)
+    /**
+     * Try running the specific action from the controller
+     */
     return await actions[method](req, res)
   } catch (e: any) {
-    let status = getHttpStatus('INTERNAL_SERVER_ERROR')
-    if (e instanceof ZodError) {
-      status = getHttpStatus('BAD_REQUEST')
+    let responseStatus = getHttpStatus('METHOD_NOT_ALLOWED')
+
+    if (e instanceof ZodError || e.constructor.name === 'ZodError') {
+      responseStatus = getHttpStatus('BAD_REQUEST')
       e = {message: fromZodError(e).toString()}
     } else {
+      responseStatus = getHttpStatus('INTERNAL_SERVER_ERROR')
       e = serializeError(e)
     }
+
     return res
-      .status(status.code)
-      .json({error: e, success: false})
+      .status(responseStatus.code)
+      .json({error: e.message, success: false})
   }
 }
 
@@ -58,7 +76,11 @@ export const parseFormData = async (req: NextApiRequest): Promise<{ primary: any
   }
 }
 
-export const getHttpStatus = (responsePhrase: keyof typeof StatusCodes): { code: any, phrase: string } => {
+export type HttpStatus = {
+  code: any,
+  phrase: string
+}
+export const getHttpStatus = (responsePhrase: keyof typeof StatusCodes): HttpStatus => {
   return {
     code: StatusCodes[responsePhrase],
     phrase: responsePhrase
