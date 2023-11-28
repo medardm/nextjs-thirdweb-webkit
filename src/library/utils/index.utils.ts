@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export function randomColor() {
   let letters = "0123456789ABCDEF";
   let color = "#";
@@ -6,3 +8,7 @@ export function randomColor() {
   }
   return color;
 }
+
+const lodash = _;
+
+export default lodash
