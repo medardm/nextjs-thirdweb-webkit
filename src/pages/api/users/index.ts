@@ -2,7 +2,7 @@ import {NextApiRequest, NextApiResponse} from "next";
 import userController from "@/library/http/controllers/user.controller";
 import {executeRouteAction, HTTP_METHODS, RouteActions} from "@/library/helpers/http.helper";
 import conf from "@/config/index";
-import {GUARDS} from "@/library/enums/guards.enum";
+import {GuardEnum} from "@/library/enums/guards.enum";
 import {RouteGuards} from "@/library/helpers/guard.helper";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -12,8 +12,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     [POST]: userController.store,
   }
   const routeGuards: RouteGuards = {
-    [GET]: [GUARDS.AUTH],
-    [POST]: [GUARDS.AUTH]
+    [GET]: [GuardEnum.AUTH],
+    [POST]: [GuardEnum.AUTH]
   }
   /**
    * Add your routes here
