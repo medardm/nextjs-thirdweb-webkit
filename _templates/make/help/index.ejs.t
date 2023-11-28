@@ -6,6 +6,9 @@ message: |
   - Inserts a new table [name] in schema.prisma
   - use make:model:only to create a model only
 
+  yarn make:api [name] [-o]
+  - Creates two api handler, 1) index for generic actions. 2) [id] for dealing with specific records
+
   yarn make:controller [name] [-o]
   - Creates a controller along with a request/validator library
   - use the -o option to create a controller only

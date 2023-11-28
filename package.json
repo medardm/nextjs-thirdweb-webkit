@@ -25,6 +25,7 @@
     "####---TEMPLATE SCRIPTS---#####": "----",
     "make:template": "hygen generator new",
     "make:help": "hygen make help",
+    "make:api": "hygen make api",
     "make:controller": "hygen make controller",
     "make:request": "hygen make request",
     "make:model": "hygen make model",
