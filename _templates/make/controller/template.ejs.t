@@ -1,6 +1,6 @@
 ---
 to: src/library/http/controllers/<%= name %>.controller.ts
-# include a request library using -r option
+# create a controller without request library using -o option
 sh: "<%= !locals.o ? `hygen make request ${name}` : null %>"
 unless_exists: true
 ---
