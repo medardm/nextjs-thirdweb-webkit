@@ -13,8 +13,6 @@ const roleModel = {
   all: (options?: Prisma.RoleFindManyArgs): Promise<Role[] | null> => {
     return prisma.role.findMany(options)
   },
-  softDelete: () => {
-  },
 }
 
 export default roleModel
