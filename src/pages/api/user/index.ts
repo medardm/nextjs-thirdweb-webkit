@@ -1,6 +1,6 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import userController from "@/library/http/controllers/user.controller";
-import {executeRouteAction, HTTP_METHODS, RouteActions} from "@/library/http";
+import {executeRouteAction, HTTP_METHODS, RouteActions} from "@/library/helpers/http.helper";
 import conf from "@/config/index";
 import {GUARDS} from "@/library/enums/guards.enum";
 import {RouteGuards} from "@/library/helpers/guard.helper";

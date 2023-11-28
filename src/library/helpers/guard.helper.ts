@@ -1,6 +1,6 @@
 import {AuthUser} from "@/library/helpers/auth.helper";
 import {GUARDS} from "@/library/enums/guards.enum";
-import {HTTP_METHODS} from "@/library/http";
+import {HTTP_METHODS} from "@/library/helpers/http.helper";
 import {RouteError} from "@/library/errors/RouteError";
 
 export type RouteGuards = {

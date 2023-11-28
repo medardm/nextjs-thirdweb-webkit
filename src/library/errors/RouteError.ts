@@ -1,4 +1,4 @@
-import {getHttpStatus, HttpStatus} from "@/library/http";
+import {getHttpStatus, HttpStatus} from "@/library/helpers/http.helper";
 
 export class RouteError extends Error {
   status: HttpStatus = getHttpStatus('METHOD_NOT_ALLOWED');

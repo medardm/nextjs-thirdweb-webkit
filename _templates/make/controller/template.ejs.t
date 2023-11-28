@@ -7,7 +7,7 @@ unless_exists: true
 import {<%= h.capitalize(name) %>} from "@prisma/client";
 import {NextApiRequest, NextApiResponse} from "next";
 import <%= name %>Model from "@/library/models/<%= name %>.model";
-import {getHttpStatus, parseFormData} from "@/library/http";
+import {getHttpStatus, parseFormData} from "@/library/helpers/http.helper";
 <% if(locals.o){ -%>
 import _ from "lodash"
 <% } -%>

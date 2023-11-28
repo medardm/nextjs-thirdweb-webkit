@@ -1,6 +1,6 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import userModel from "@/library/models/user.model";
-import {getHttpStatus, parseFormData} from "@/library/http";
+import {getHttpStatus, parseFormData} from "@/library/helpers/http.helper";
 import userRequest from "@/library/http/requests/user.request";
 
 const userController = {

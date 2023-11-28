@@ -1,6 +1,6 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import userController from "@/library/http/controllers/user.controller";
-import {executeRouteAction} from "@/library/http";
+import {executeRouteAction} from "@/library/helpers/http.helper";
 import conf from "@/config/index";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
