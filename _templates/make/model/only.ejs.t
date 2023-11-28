@@ -13,7 +13,7 @@ const <%= name %>Model = {
       }
     })
   },
-  all: (options?: Prisma.<%= h.capitalize(name) %>FindManyArgs): Promise<<%= h.capitalize(name) %>[] | null> => {
+  all: async (options?: Prisma.<%= h.capitalize(name) %>FindManyArgs): Promise<<%= h.capitalize(name) %>[] | null> => {
     return prisma.<%= name %>.findMany(options)
   },
   softDelete: () => {
