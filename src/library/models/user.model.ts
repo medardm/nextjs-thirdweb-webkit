@@ -26,7 +26,7 @@ const userModel = {
       }
     })
   },
-  all: (options?: Prisma.UserFindManyArgs): Promise<User[] | null> => {
+  all: async (options?: Prisma.UserFindManyArgs): Promise<User[] | null> => {
     return prisma.user.findMany(options)
   },
   softDelete: () => {
