@@ -1,6 +1,6 @@
-import { BigNumber, BigNumberish } from "ethers";
+import {BigNumber, BigNumberish} from "ethers";
 
-export default function formatTimeRemaining(
+export function formatTimeRemaining(
   unixTimestamp: BigNumberish
 ): string {
   // Get the current time in seconds

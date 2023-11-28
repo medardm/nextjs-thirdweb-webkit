@@ -6,7 +6,7 @@ import {ThirdwebAuth} from "@thirdweb-dev/auth/next";
 import {PrivateKeyWallet} from "@thirdweb-dev/auth/evm";
 import {User} from "@prisma/client";
 import userModel from "@/library/models/user.model";
-import {serialize} from "@/utils/json.utils";
+import {serialize} from "@/library/utils/json.utils";
 
 export const {ThirdwebAuthHandler, getUser} = ThirdwebAuth({
   domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN || "",

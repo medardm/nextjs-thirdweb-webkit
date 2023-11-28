@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import Container from "@/resources/components/Container/Container";
 import Skeleton from "@/resources/components/Skeleton/Skeleton";
 import styles from "@/resources/css/Profile.module.css";
-import randomColor from "@/utils/randomColor";
+import {randomColor} from "@/library/utils/index.utils";
 
 const [randomColor1, randomColor2, randomColor3, randomColor4] = [
   randomColor(),
