@@ -1,7 +1,11 @@
 import {Binance} from "@thirdweb-dev/chains";
+import {BoolFromString} from "@/library/utils/index.utils";
 
 const app = {
-  environment: process.env.APP_ENV ?? process.env.NODE_ENV
+  environment: process.env.APP_ENV ?? process.env.NODE_ENV,
+  guards: {
+    enabled: BoolFromString(process.env.ENABLE_GUARDS?? 'true')
+  }
 }
 
 /**
