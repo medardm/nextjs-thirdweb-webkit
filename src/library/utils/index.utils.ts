@@ -9,6 +9,10 @@ export function randomColor() {
   return color;
 }
 
+export function BoolFromString(value: 'true' | 'false' | string) {
+  return (String(value).toLowerCase() === 'true');
+}
+
 const lodash = _;
 
 export default lodash

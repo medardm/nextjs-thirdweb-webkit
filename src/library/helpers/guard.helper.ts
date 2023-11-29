@@ -2,6 +2,7 @@ import {AuthUser} from "@/library/helpers/auth.helper";
 import {GuardEnum} from "@/library/enums/guards.enum";
 import {HTTP_METHODS} from "@/library/helpers/http.helper";
 import {RouteError} from "@/library/errors/RouteError";
+import config from "@/config/index";
 
 export type RouteGuards = {
   [HTTP_METHODS.GET]?: GuardEnum[]
@@ -30,8 +31,11 @@ export const guardChecks = {
 }
 
 export const checkGuards = async (user: AuthUser, routeGuards: RouteGuards | undefined | null, routeMethod: HTTP_METHODS) => {
+  if (!config.app.guards.enabled) {
+    return
+  }
   if (routeGuards && routeGuards[routeMethod]) {
-    const guards = <GuardEnum[]> routeGuards[routeMethod]
+    const guards = <GuardEnum[]>routeGuards[routeMethod]
     for (const apiGuard of guards) {
       guardChecks[apiGuard](user)
     }
