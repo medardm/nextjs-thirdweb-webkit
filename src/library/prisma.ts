@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import {PrismaClient} from '@prisma/client'
 import config from "@/config/index";
 
 // PrismaClient is attached to the `global` object in development to prevent
@@ -9,7 +9,38 @@ import config from "@/config/index";
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient }
 
-export const prisma = globalForPrisma.prisma || new PrismaClient()
+export const prisma = globalForPrisma.prisma || new PrismaClient(
+  // {
+  //   log: ['query'],
+  // }
+).$extends({
+  query: {
+    user: {
+      $allOperations({ model, operation, args, query }) {
+        /* your custom logic here */
+        args = {
+          ...args,
+          include: {
+            roles: {
+              select: {
+                role: {
+                  select: {
+                    id: true,
+                    name: true,
+                    desc: true
+                  }
+                },
+                createdAt: true
+              }
+            }
+          },
+        }
+        return query(args)
+      },
+    }
+  },
+})
+
 
 if (config.app.environment !== 'production') globalForPrisma.prisma = prisma
 

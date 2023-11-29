@@ -1,6 +1,7 @@
 import prisma from "@/library/prisma";
 import {Prisma, User} from "@prisma/client";
 import {RoleEnum} from "@/library/enums/roles.enum";
+import lodash from "@/library/utils/index.utils";
 
 const userModel = {
   ...prisma.user,
@@ -41,26 +42,65 @@ const userModel = {
   all: async (options?: Prisma.UserFindManyArgs): Promise<User[] | null> => {
     return prisma.user.findMany(options)
   },
-  assignRole: async (user: User, roleId: RoleEnum) => {
-    return prisma.user.update({
-      where: {
-        walletAddress: user.walletAddress
-      },
-      data: {
-        roles: {
-          create: [
-            {
-              role: {
-                connect: {
-                  id: roleId
-                }
-              }
-            },
-          ]
+}
+
+/**
+ * User traits
+ */
+export const hasRole = async (user: User, role: RoleEnum) => {
+  let roles = (lodash.pick(user, ['roles']) as { roles: any[] }).roles
+  return lodash.some(roles, {role: {id: role}})
+}
+
+export const hasAllRoles = async (user: User, roles: RoleEnum[]) => {
+  const result = await userModel.findMany({
+    where: {
+      id: user.id,
+      roles: {
+        some: {
+          role_id: {
+            in: roles
+          }
         }
       }
-    })
-  },
+    },
+    select: {
+      _count: {
+        select: {
+          roles: {
+            where: {
+              role_id: {
+                in: roles
+              }
+            }
+          }
+        }
+      }
+    }
+  })
+
+  return !!result && roles.length === result[0]?._count?.roles
+}
+
+export const assignRole = async (user: User, role: RoleEnum) => {
+  return userModel.update({
+    where: {
+      walletAddress: user.walletAddress
+    },
+    data: {
+      roles: {
+        create: [
+          {
+            role: {
+              connect: {
+                id: role
+              }
+            }
+          },
+        ]
+      }
+    }
+  })
 }
 
 export default userModel
