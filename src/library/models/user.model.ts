@@ -3,6 +3,10 @@ import {Prisma, Role, User} from "@prisma/client";
 import {RoleEnum} from "@/library/enums/roles.enum";
 import lodash from "@/library/utils/index.utils";
 
+/**
+ * Roles is set thru prisma.ts in $extends
+ * that's why we force return this type
+ */
 export type UserWithRole = User & {
   roles: {
     role: Role[],
@@ -92,8 +96,8 @@ export const hasAllRoles = async (user: User, roles: RoleEnum[]) => {
   return !!result && roles.length === result[0]?._count?.roles
 }
 
-export const assignRole = async (user: User, role: RoleEnum) => {
-  return userModel.update({
+export const assignRole = async (user: User, role: RoleEnum): Promise<UserWithRole> => {
+  return <UserWithRole><unknown> userModel.update({
     where: {
       walletAddress: user.walletAddress
     },

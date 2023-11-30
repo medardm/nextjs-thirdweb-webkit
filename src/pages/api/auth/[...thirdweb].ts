@@ -2,6 +2,7 @@ import {ThirdwebAuth} from "@thirdweb-dev/auth/next";
 import {PrivateKeyWallet} from "@thirdweb-dev/auth/evm";
 import userModel from "@/library/models/user.model";
 import {serialize} from "@/library/utils/json.utils";
+import {formatAuthUser} from "@/library/helpers/auth.helper";
 
 export const {ThirdwebAuthHandler, getUser} = ThirdwebAuth({
   domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN || "",
@@ -14,22 +15,8 @@ export const {ThirdwebAuthHandler, getUser} = ThirdwebAuth({
         walletAddress: address
       })
 
-      const formattedRoles = user.roles.map(val => {
-        return {
-          assignedAt: val.createdAt,
-          ...val.role,
-        }
-      })
-
       // store user session data in session
-      return serialize({
-        id: user.id,
-        walletAddress: user.walletAddress,
-        lastLoginAt: user.lastLoginAt,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt,
-        roles: formattedRoles,
-      })
+      return serialize(formatAuthUser(user))
     },
     onUser: async (user) => {
       // Here we can run side-effects whenever a user is fetched from the client side

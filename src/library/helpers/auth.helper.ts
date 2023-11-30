@@ -1,8 +1,9 @@
 import {NextApiRequest} from "next";
 import {ThirdwebAuthUser} from "@thirdweb-dev/auth/next";
 import {getUser} from "@/pages/api/auth/[...thirdweb]";
-import userModel from "@/library/models/user.model";
+import userModel, {assignRole, UserWithRole} from "@/library/models/user.model";
 import config from "@/config/index";
+import {RoleEnum} from "@/library/enums/roles.enum";
 
 export type AuthUser = ThirdwebAuthUser
 
@@ -19,12 +20,32 @@ export const getAuthUser = async (req: NextApiRequest): Promise<AuthUser> => {
         }
       })
     }
+    const userWithRole = await assignRole(testUser, RoleEnum.SuperAdmin)
+    const authUser = formatAuthUser(userWithRole)
     return <AuthUser>{
-      address: testUser.walletAddress,
+      address: authUser.walletAddress,
       session: {
-        ...testUser
+        ...authUser
       }
     }
   }
   return <AuthUser>await getUser(req);
+}
+
+export const formatAuthUser = (userWithRole: UserWithRole) => {
+  const formattedRoles = userWithRole.roles.map(val => {
+    return {
+      assignedAt: val.createdAt,
+      ...val.role,
+    }
+  })
+
+  return {
+    id: userWithRole.id,
+    walletAddress: userWithRole.walletAddress,
+    lastLoginAt: userWithRole.lastLoginAt,
+    createdAt: userWithRole.createdAt,
+    updatedAt: userWithRole.updatedAt,
+    roles: formattedRoles,
+  }
 }
