@@ -12,7 +12,7 @@ export type RouteGuards = {
   [HTTP_METHODS.DELETE]?: GuardEnum[]
 }
 
-export const guardChecks = {
+export const authGuard = {
   [GuardEnum.AUTH]: (user: AuthUser) => {
     if (!user) {
       throw new RouteError('User not logged in')
@@ -37,7 +37,7 @@ export const checkGuards = async (user: AuthUser, routeGuards: RouteGuards | und
   if (routeGuards && routeGuards[routeMethod]) {
     const guards = <GuardEnum[]>routeGuards[routeMethod]
     for (const apiGuard of guards) {
-      guardChecks[apiGuard](user)
+      authGuard[apiGuard](user)
     }
   }
 }
