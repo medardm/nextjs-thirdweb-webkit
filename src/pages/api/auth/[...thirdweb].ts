@@ -1,6 +1,5 @@
 import {ThirdwebAuth} from "@thirdweb-dev/auth/next";
 import {PrivateKeyWallet} from "@thirdweb-dev/auth/evm";
-import {User} from "@prisma/client";
 import userModel from "@/library/models/user.model";
 import {serialize} from "@/library/utils/json.utils";
 
@@ -11,23 +10,31 @@ export const {ThirdwebAuthHandler, getUser} = ThirdwebAuth({
     onLogin: async (address): Promise<any> => {
       console.log('login event')
       // save if new or update
-      const user: User = await userModel.login({
+      const user = await userModel.login({
         walletAddress: address
       })
 
+      const formattedRoles = user.roles.map(val => {
+        return {
+          assignedAt: val.createdAt,
+          ...val.role,
+        }
+      })
+
       // store user session data in session
-      return serialize(<User>{
+      return serialize({
         id: user.id,
         walletAddress: user.walletAddress,
         lastLoginAt: user.lastLoginAt,
         createdAt: user.createdAt,
-        updatedAt: user.updatedAt
+        updatedAt: user.updatedAt,
+        roles: formattedRoles,
       })
     },
     onUser: async (user) => {
       // Here we can run side-effects whenever a user is fetched from the client side
       console.log('onUser event')
-      return 'asdasd'
+      return {}
       // provide any extra user data to be sent to the client
       // along with the default user object.
       // return user;

@@ -1,14 +1,21 @@
 import prisma from "@/library/prisma";
-import {Prisma, User} from "@prisma/client";
+import {Prisma, Role, User} from "@prisma/client";
 import {RoleEnum} from "@/library/enums/roles.enum";
 import lodash from "@/library/utils/index.utils";
+
+export type UserWithRole = User & {
+  roles: {
+    role: Role[],
+    createdAt: any
+  }[]
+}
 
 const userModel = {
   ...prisma.user,
   login: async (data: {
     walletAddress: string,
-  }, defaultRole: RoleEnum = RoleEnum.Standard): Promise<User> => {
-    return prisma.user.upsert({
+  }, defaultRole: RoleEnum = RoleEnum.Standard): Promise<UserWithRole> => {
+    return <UserWithRole><unknown>prisma.user.upsert({
       where: {
         walletAddress: data.walletAddress
       },
@@ -30,6 +37,9 @@ const userModel = {
           ]
         },
       },
+      include: {
+        roles: true
+      }
     })
   },
   first: async (value: any, column: keyof User = 'id'): Promise<User | null> => {

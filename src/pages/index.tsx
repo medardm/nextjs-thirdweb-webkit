@@ -2,12 +2,15 @@ import type {NextPage} from "next";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/resources/css/Home.module.css";
+import {getAuthUser} from "@/library/helpers/auth.helper";
 
 /**
  * Landing page with a simple gradient background and a hero asset.
  * Free to customize as you see fit.
  */
+
 const Home: NextPage = (props) => {
+  console.log(props)
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -64,5 +67,11 @@ const Home: NextPage = (props) => {
     </div>
   );
 };
+
+export const getServerSideProps = (async (context: any) => {
+  const res = await getAuthUser(context.req)
+  const authUser = await res
+  return { props: { authUser } }
+})
 
 export default Home;
