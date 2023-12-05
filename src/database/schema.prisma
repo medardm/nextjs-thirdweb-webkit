@@ -31,14 +31,14 @@ model Role {
 }
 
 model RoleUser {
-  user      User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  role      Role      @relation(fields: [role_id], references: [id], onDelete: Cascade)
-  user_id   Int
-  role_id   Int
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      Role      @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  userId    Int
+  roleId    Int
   createdAt DateTime? @default(now())
   updatedAt DateTime? @updatedAt
 
-  @@id([user_id, role_id])
-  @@index([user_id])
-  @@index([role_id])
+  @@id([userId, roleId])
+  @@index([userId])
+  @@index([roleId])
 }
