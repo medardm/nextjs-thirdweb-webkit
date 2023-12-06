@@ -7,6 +7,7 @@ import refreshDatabase from "@/database/refreshDatabase";
 
 beforeAll(async () => {
   await refreshDatabase()
+  await seedPreRequisiteData()
 })
 
 describe('<%= name %> test', () => {

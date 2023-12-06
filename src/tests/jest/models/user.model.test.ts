@@ -4,9 +4,11 @@ import userModel from "@/library/models/user.model";
 import {faker} from "@faker-js/faker";
 import seedTestUsers from "@/database/seeders/test/user.seeder";
 import refreshDatabase from "@/database/refreshDatabase";
+import seedPreRequisiteData from "@/database/seeders/index.seeder";
 
 beforeAll(async () => {
   await refreshDatabase()
+  await seedPreRequisiteData()
   await seedTestUsers()
 })
 
