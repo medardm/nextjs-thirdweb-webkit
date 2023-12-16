@@ -11,6 +11,9 @@ import {RouteGuards} from "@/library/helpers/guard.helper";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {POST, GET} = HTTP_METHODS
+  /**
+   * Add your routes here
+   */
   const routeActions: RouteActions = {
     [GET]: <%= name %>Controller.all,
     [POST]: <%= name %>Controller.store,
@@ -18,9 +21,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const routeGuards: RouteGuards = {
     // [GET]: [GuardEnum.AUTH], // register guards here
   }
-  /**
-   * Add your routes here
-   */
   return await executeRouteAction(routeActions, req, res, routeGuards)
 }
 
