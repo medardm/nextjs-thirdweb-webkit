@@ -1,20 +1,19 @@
 # Nextjs Thirdweb Webkit
 
-a webkit built using thirdwebs starter template
+A NextJS-Thirdweb webkit with inspiration drawn from Laravel 
 
 ## Introduction
-### Setting up webkit
-- install dependencies and run setup script
-```shell
-yarn
-yarn setup
-```
+- The directory structure and certain features of this webkit was inspired by Laravel
+- The main goal of this project was to make it easier for developers when working with a Laravel Project and a NextJS at the same time
+
 ## Scripts
 - there are useful scripts in `package.json` that can aid in development
 - run `yarn scripts` to show available scripts
+
 ### Setting up 
 - `yarn setup`
   - run migrations and seed prerequisite and test data
+  
 ### Templates
 - Certain libraries like models can be generated through the `make` command.
 - `yarn make:help`
@@ -25,7 +24,8 @@ yarn setup
   - `yarn make:crud user`
       - Generates all initially needed libraries for creating a RESTFUL API
       - initiates `make:controller`, `make:model`, and `make:api`
-- #### Database and Prisma
+    
+#### Database and Prisma
 - `yarn prisma:generate`
   - update prisma client with the latest changes in the schema
   - **please run this after updating the schema** to avoid type errors when using models
