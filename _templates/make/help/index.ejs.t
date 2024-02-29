@@ -31,4 +31,5 @@ message: |
 
   yarn make:seeder [name]
   - generate a database seeder
+  - please move the seeder file to a category (prod or test dir) then call it inside the index.seeder
 ---
